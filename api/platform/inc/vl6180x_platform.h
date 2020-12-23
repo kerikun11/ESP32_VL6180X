@@ -225,7 +225,7 @@ void VL6180x_PollDelay(VL6180xDev_t dev); /* usualy best implemanted a a real fu
 #if VL6180X_LOG_ENABLE
 #include <sys/time.h>
 #include <stdio.h>
-static FILE * log_file = stdout;
+#include <esp_log.h>
 
 #define trace_printf fprinf
 #define LOG_GET_TIME() esp_log_timestamp()
@@ -247,7 +247,7 @@ static FILE * log_file = stdout;
  * @ingroup api_platform
  */
 #define LOG_FUNCTION_START(fmt, ... ) \
-    fprintf(log_file, "VL61080 beg %s start @%d\t" fmt "\n", __FUNCTION__, LOG_GET_TIME(), ##__VA_ARGS__)
+    fprintf(stdout, "VL61080 beg %s start @%d\t" fmt "\n", __FUNCTION__, LOG_GET_TIME(), ##__VA_ARGS__)
 
 /**
  * @brief  Logging function end with status.
@@ -262,7 +262,7 @@ static FILE * log_file = stdout;
  * @ingroup api_platform
  */
 #define LOG_FUNCTION_END(status)\
-        fprintf(log_file, "VL61080  end %s @%d %d\n", __FUNCTION__, LOG_GET_TIME(), (int)status)
+        fprintf(stdout, "VL61080  end %s @%d %d\n", __FUNCTION__, LOG_GET_TIME(), (int)status)
 
 
 /**
@@ -280,7 +280,7 @@ static FILE * log_file = stdout;
  * @ingroup api_platform
  */
 #define LOG_FUNCTION_END_FMT(status, fmt, ... )\
-        fprintf(log_file, "End %s @%d %d\t"fmt"\n" , __FUNCTION__, LOG_GET_TIME(), (int)status,##__VA_ARGS__)
+        fprintf(stdout, "End %s @%d %d\t"fmt"\n" , __FUNCTION__, LOG_GET_TIME(), (int)status,##__VA_ARGS__)
 
 
 /**

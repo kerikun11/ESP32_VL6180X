@@ -1588,7 +1588,7 @@ int VL6180x_RangeGetDeviceReady(VL6180xDev_t dev, int *Ready)
 {
 	int status;
 	uint8_t u8;
-	LOG_FUNCTION_START("%p", (int)Ready);
+	LOG_FUNCTION_START("%p", Ready);
 	status = VL6180x_RdByte(dev, RESULT_RANGE_STATUS, &u8);
 	if (!status)
 		*Ready = u8&RANGE_DEVICE_READY_MASK;
@@ -1766,7 +1766,7 @@ int VL6180x_RangeIgnoreConfigure(VL6180xDev_t dev, uint16_t ValidHeight_mm, uint
 	int status;
 	int enabled;
 
-	LOG_FUNCTION_START("height= %d Threshold=%d", (int)ValidHeight_mm, (int)Threshold);
+	LOG_FUNCTION_START("height= %d Threshold=%d", (int)ValidHeight_mm, (int)IgnoreThreshold);
 
 	enabled = VL6180xDevDataGet(dev, RangeIgnore.Enabled);
 	VL6180xDevDataSet(dev, RangeIgnore.ValidHeight, ValidHeight_mm);

@@ -12,11 +12,3 @@ set(COMPONENT_ADD_INCLUDEDIRS
 )
 
 register_component()
-
-target_compile_definitions(${COMPONENT_TARGET}
-    PRIVATE USE_I2C_2V8=1
-)
-
-target_compile_options(${COMPONENT_TARGET}
-    PRIVATE -mlongcalls
-)
