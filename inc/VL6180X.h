@@ -50,8 +50,8 @@ public:
   }
   bool read(uint16_t *pRangeMilliMeter) {
     VL6180x_RangeData_t Range;
-    VL6180x_RangePollMeasurement(dev, &Range);
-    if (Range.errorStatus != 0)
+    int status = VL6180x_RangePollMeasurement(dev, &Range);
+    if (status != 0 || Range.errorStatus != 0)
       return false;
     *pRangeMilliMeter = Range.range_mm;
     return true;

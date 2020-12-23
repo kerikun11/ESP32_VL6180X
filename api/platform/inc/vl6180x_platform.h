@@ -134,7 +134,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * @warning It is mandatory to set #VL6180x_HAVE_MULTI_READ to 1 to benefit from this advanced mode
 
  */
-#define VL6180x_CACHED_REG          1
+#define VL6180x_CACHED_REG          0
 
 
 /**
