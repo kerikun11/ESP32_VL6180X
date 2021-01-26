@@ -33,7 +33,7 @@ extern "C" void app_main() {
     TickType_t tick_start = xTaskGetTickCount();
     bool res = vl.read(&result_mm);
     TickType_t tick_end = xTaskGetTickCount();
-    int took_ms = ((int)tick_end - tick_start) / portTICK_PERIOD_MS;
+    int took_ms = pdTICKS_TO_MS((int)tick_end - tick_start);
     if (res)
       logi << "Range: " << (int)result_mm << " [mm]"
            << " took " << took_ms << " [ms]" << std::endl;

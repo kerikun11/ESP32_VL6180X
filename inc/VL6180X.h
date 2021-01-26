@@ -51,8 +51,11 @@ public:
   bool read(uint16_t *pRangeMilliMeter) {
     VL6180x_RangeData_t Range;
     int status = VL6180x_RangePollMeasurement(dev, &Range);
-    if (status != 0 || Range.errorStatus != 0)
+    if (status != 0 || Range.errorStatus != 0) {
+      ESP_LOGW(TAG, "i2c status: %d, range status: %s", status,
+               VL6180x_RangeGetStatusErrString(Range.errorStatus));
       return false;
+    }
     *pRangeMilliMeter = Range.range_mm;
     return true;
   }

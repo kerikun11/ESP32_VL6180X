@@ -1,8 +1,10 @@
 #include "vl6180x_platform.h"
 
-#include "driver/i2c.h"
-#include "esp_err.h"
-#include "esp_log.h"
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include <driver/i2c.h>
+#include <esp_err.h>
+#include <esp_log.h>
 
 /**
  * @brief execute delay in all polling api calls : @a VL6180x_RangePollMeasurement() and @a VL6180x_AlsPollMeasurement()
@@ -17,5 +19,5 @@
  */
 void VL6180x_PollDelay(VL6180xDev_t dev)
 {
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    vTaskDelay(pdMS_TO_TICKS(1));
 }
