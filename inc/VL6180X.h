@@ -61,13 +61,14 @@ public:
   }
   void i2cMasterInit(gpio_num_t pin_sda = GPIO_NUM_21,
                      gpio_num_t pin_scl = GPIO_NUM_22, uint32_t freq = 400000) {
-    i2c_config_t conf;
+    static i2c_config_t conf;
     conf.mode = I2C_MODE_MASTER;
     conf.sda_io_num = pin_sda;
     conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
     conf.scl_io_num = pin_scl;
     conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
     conf.master.clk_speed = freq;
+    conf.clk_flags = 0;
     ESP_ERROR_CHECK(i2c_param_config(i2c_port, &conf));
     ESP_ERROR_CHECK(i2c_driver_install(i2c_port, conf.mode, 0, 0, 0));
   }
